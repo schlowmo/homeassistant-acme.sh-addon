@@ -80,12 +80,11 @@ function issue {
 
     acme.sh --issue ${DOMAIN_PARAMS} \
         --keylength "$KEY_LENGTH" \
-        --dns "$DNS_PROVIDER" \
-        ${DNS_CHALLENGE_ALIAS_PARAM} \
+        --dns-persist \
         || { ret=$?; [ $ret -eq ${RENEW_SKIP} ] && return 0 || return $ret ;}
 }
 
-#issue
+issue
 
 function install {
     # Install the certificate and restart NGINX, if necessary
@@ -101,6 +100,6 @@ function install {
 
 }
 
-#install
+install
 
 bashio::log.info "SSL certificate successfully issued and installed."

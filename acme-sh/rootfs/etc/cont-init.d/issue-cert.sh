@@ -66,7 +66,8 @@ fi
 
 if [ ! -f "/$LE_CONFIG_HOME/.persist-created" ]; then
     bashio::log.info "Creating persist value"
-    acme.sh --make-dns-persist-value --server "$ACME_PROVIDER" -d ${DOMAIN_PARAMS}
+    local DOMAIN_PARAMS=$(printf " -d %s" "${DOMAINS[@]}")
+    acme.sh --make-dns-persist-value --server "$ACME_PROVIDER" ${DOMAIN_PARAMS}
     touch "/$LE_CONFIG_HOME/.persist-created"
 fi
 

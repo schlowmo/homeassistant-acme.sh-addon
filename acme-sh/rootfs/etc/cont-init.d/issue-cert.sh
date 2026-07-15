@@ -37,7 +37,7 @@ fi
 ACCOUNT_EMAIL=$(bashio::config 'accountemail')
 DNS_PROVIDER=$(bashio::config 'dnsprovider')
 ACME_PROVIDER=$(bashio::config 'acmeprovider')
-DNS_ENV_VARS=$(jq --raw-output '.dnsenvvars | map("export \(.name)='\''\(.value)'\''") | .[]' $CONFIG_PATH)
+#DNS_ENV_VARS=$(jq --raw-output '.dnsenvvars | map("export \(.name)='\''\(.value)'\''") | .[]' $CONFIG_PATH)
 KEY_LENGTH=$(bashio::config 'keylength')
 FULLCHAIN_FILE=$(bashio::config 'fullchainfile')
 KEY_FILE=$(bashio::config 'keyfile')
@@ -50,7 +50,7 @@ if bashio::config.has_value 'dnschallengealias'; then
 fi
 
 # shellcheck source=/dev/null
-source <(echo "$DNS_ENV_VARS");
+#source <(echo "$DNS_ENV_VARS");
 
 if [ ! -f "/$LE_CONFIG_HOME/.registered" ]; then
     bashio::log.info "Registering account"

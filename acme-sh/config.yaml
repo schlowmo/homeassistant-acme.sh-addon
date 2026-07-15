@@ -1,5 +1,5 @@
 name: acme.sh addon for Home Assistant
-version: "2026.07.3"
+version: "2026.07.4"
 slug: acme-sh
 #image: "ghcr.io/djelibeybi/homeassistant-acme.sh-addon-{arch}"
 description: >-
@@ -23,13 +23,9 @@ options:
   dnsmode: persist
   dnsprovider: null
   dnschallengealias: ""
-  dnsenvvars:
-    - name: null
-      value: null
   keylength: "4096"
   fullchainfile: fullchain.pem
   keyfile: privkey.pem
-  test: "test"
 schema:
   accountemail: str
   acmeprovider: list(letsencrypt|letsencrypt_test|buypass|buypass_test|zerossl|sslcom|google|googletest)
@@ -38,10 +34,6 @@ schema:
   dnsmode: list(normal|persist)
   dnsprovider: str?
   dnschallengealias: str?
-  dnsenvvars:
-    - name: str
-      value: str
   keylength: list(2048|4096|ec-256|ec-384|ec-512)
   fullchainfile: str
   keyfile: str
-  test: str?

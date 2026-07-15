@@ -1,5 +1,5 @@
 name: acme.sh addon for Home Assistant
-version: "2026.07.5"
+version: "2026.07.6"
 slug: acme-sh
 #image: "ghcr.io/djelibeybi/homeassistant-acme.sh-addon-{arch}"
 description: >-

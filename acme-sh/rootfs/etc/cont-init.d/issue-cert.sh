@@ -64,6 +64,12 @@ if [ ! -f "/$LE_CONFIG_HOME/.set-default" ]; then
     touch "/$LE_CONFIG_HOME/.set-default"
 fi
 
+if [ ! -f "/$LE_CONFIG_HOME/.persist-created" ]; then
+    bashio::log.info "Creating persist value"
+    acme.sh --make-dns-persist-value --server "$ACME_PROVIDER" -d ${DOMAIN_PARAMS}
+    touch "/$LE_CONFIG_HOME/.persist-created"
+fi
+
 function issue {
     # Issue the certificate, if necessary. Exit cleanly if it exists.
     bashio::log.info "Issuing certificates for ${DOMAINS[@]}"
@@ -78,7 +84,7 @@ function issue {
         || { ret=$?; [ $ret -eq ${RENEW_SKIP} ] && return 0 || return $ret ;}
 }
 
-issue
+#issue
 
 function install {
     # Install the certificate and restart NGINX, if necessary
@@ -94,6 +100,6 @@ function install {
 
 }
 
-install
+#install
 
 bashio::log.info "SSL certificate successfully issued and installed."
